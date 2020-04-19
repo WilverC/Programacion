@@ -11,8 +11,13 @@
 
 using namespace std;
 
+class lista{
+public:
+	void menu(); //menu de opciones 
+};
+
 /*Menu de instrucciones e inicio de programa*/
-void menu(){
+void lista::menu(){
 	int x;
 	do{
 		system("cls");
@@ -41,8 +46,18 @@ void menu(){
 				break;
 			case 6:
 				break;
-			default:
+			case 7:
+				system("cls");
+				cout<<"*********************\n";
 				cout<<"Hasta luego\n";
+				cout<<"*********************\n";
+				break;
+			default:
+				system("cls");
+				cout<<"*********************\n";
+				cout<<"Opcion incorrecta\n";
+				cout<<"*********************\n";
+				system("pause");
 		}
 
 	}while(x != 7);
@@ -50,5 +65,6 @@ void menu(){
 
 int main(){
     cout<<"Hola"<<endl;
-    menu();
+    lista l1;
+    l1.menu();
 }
