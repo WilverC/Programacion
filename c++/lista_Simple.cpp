@@ -31,6 +31,8 @@ void menu(){
 		switch(x){
 			case 1:
 				break;
+			case 2:
+				break;
 			default:
 				cout<<"Hasta luego\n";
 		}

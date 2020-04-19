@@ -1,2 +1,12 @@
-*.exe
-c++/*.exe
+a.exe
+Android/
+C/
+Git/
+Proyectos/	
+Proyectos/
+fortran.f95/
+go/
+java/
+php/
+python/
+ruby/
