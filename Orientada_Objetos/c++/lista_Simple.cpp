@@ -172,7 +172,6 @@ void lista::borrar(){
 			usuario->siguiente = NULL; //asigna nulo a siguiente
 			fin = usuario; //actualiza el apuntador de fin a usuario
 		}else{ //borra el nodo donde esta el usuario
-			cout<<"elemento borrado: "<< usuario->siguiente->valor;
 			temp = usuario->siguiente->siguiente; //asigna a al nodo temporal el nodo siguiente del nodo a borar
 			delete usuario->siguiente; //se borra el nodo seguido del usuario
 			usuario->siguiente = temp; //se actualiza el nodo siguiente del usuario
@@ -197,7 +196,7 @@ void lista::ve_fin(){
 		cout<<"No hay elementos\n";
 		system("pause");
 	}else{ //si hay elementos
-		usuario = fin; // actualiza el apuntador usuario al fin
+		usuario = fin; // actualiza el apuntador usuario al final de la lista
 	}
 }
 
