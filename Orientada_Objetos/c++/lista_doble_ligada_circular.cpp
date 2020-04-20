@@ -182,29 +182,33 @@ void lista::anterior(){
 void lista::borrar(){
 	nodo *temp;
 	system("cls");
-	cout<<"Elemento a borrar: "<<usuario->siguiente->valor<<"\n";
-	if(usuario == inicio){ //borra el primero
-		temp=inicio->siguiente; //temp sera el siguiente de inicio
-		temp->anterior = fin; //el anterior de temp es fin
-		fin->siguiente = temp; //el siguiente de fin sera el siguiente de inicio
-		delete inicio; //borro inicio
-		inicio = temp; //inicio sera temp
-		usuario=inicio; //usuario se queda en el inicio
-	}
-	else if(usuario == fin){ //borra el ultimo elemento
-		temp = usuario->anterior; //tempp vale al anterior del usuario
-		fin = temp; //el nuevo fin sera temp
-		fin->siguiente=inicio; //el siguiente de fin es inicio
-		inicio->anterior = fin; //
-		delete usuario; //borra el siguiente de usuario
-		usuario = fin; //usuario sera igual a fin
-	}
-	else{
-		temp = usuario->anterior; //temp apunta al anterior del usuario
-		temp->siguiente = usuario->siguiente; //el siguiente de temo es el siguiente
-		usuario->siguiente->anterior = temp; //el anterior del siguiente del usuario es temp
-		delete usuario; //boorr temp
-		usuario = temp;
+	if(usuario != NULL){
+		cout<<"Elemento a borrar: "<<usuario->siguiente->valor<<"\n";
+		if(usuario == inicio){ //borra el primero
+			temp=inicio->siguiente; //temp sera el siguiente de inicio
+			temp->anterior = fin; //el anterior de temp es fin
+			fin->siguiente = temp; //el siguiente de fin sera el siguiente de inicio
+			delete inicio; //borro inicio
+			inicio = temp; //inicio sera temp
+			usuario=inicio; //usuario se queda en el inicio
+		}
+		else if(usuario == fin){ //borra el ultimo elemento
+			temp = usuario->anterior; //tempp vale al anterior del usuario
+			fin = temp; //el nuevo fin sera temp
+			fin->siguiente=inicio; //el siguiente de fin es inicio
+			inicio->anterior = fin; //
+			delete usuario; //borra el siguiente de usuario
+			usuario = fin; //usuario sera igual a fin
+		}
+		else{
+			temp = usuario->anterior; //temp apunta al anterior del usuario
+			temp->siguiente = usuario->siguiente; //el siguiente de temo es el siguiente
+			usuario->siguiente->anterior = temp; //el anterior del siguiente del usuario es temp
+			delete usuario; //boorr temp
+			usuario = temp;
+		}
+	}else{
+		cout<<"No hay elementos \n";
 	}
 	system("pause");
 }
