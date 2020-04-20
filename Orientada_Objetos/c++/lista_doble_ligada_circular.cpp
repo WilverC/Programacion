@@ -15,6 +15,7 @@ class nodo{
 public:
 	int valor;
 	nodo *siguiente;
+	nodo *anterior;
 	nodo(int);
 };
 
@@ -33,6 +34,7 @@ public:
 	void mostrar();
 	void borrar();
 	void siguiente();
+	void anterior();
 	void ve_inicio();
 	void ve_fin();
 	lista();
@@ -51,10 +53,11 @@ void lista::menu(){
 		cout<<"1. INSERTAR\n";
 		cout<<"2. MOSTRAR\n";
 		cout<<"3. SIGUIENTE\n";
-		cout<<"4. BORRAR\n";
-		cout<<"5. PRIMERO\n";
-		cout<<"6. ULTIMO\n";
-		cout<<"7. SALIR\n";
+		cout<<"4. ANTERIOR\n";
+		cout<<"5. BORRAR\n";
+		cout<<"6. PRIMERO\n";
+		cout<<"7. ULTIMO\n";
+		cout<<"8. SALIR\n";
 
 		cout<<"Elige una opcion: ";
 		cin>>x;
@@ -70,15 +73,18 @@ void lista::menu(){
 				siguiente();
 				break;
 			case 4:
-				borrar();
+				anterior();
 				break;
 			case 5:
-				ve_inicio();
+				borrar();
 				break;
 			case 6:
-				ve_fin();
+				ve_inicio();
 				break;
 			case 7:
+				ve_fin();
+				break;
+			case 8:
 				system("cls");
 				cout<<"*********************\n";
 				cout<<"Hasta luego\n";
@@ -92,7 +98,7 @@ void lista::menu(){
 				system("pause");
 		}
 
-	}while(x != 7);
+	}while(x != 8);
 }
 
 void lista::insertar(){
@@ -109,6 +115,7 @@ void lista::insertar(){
 void lista::primero(int x){
 	nodo *i = new nodo(x); //crea un nodo, asigna memoria
 	i->siguiente = i; // el siguiente del nodo sera el mismo
+	i->anterior = i; //el anterior de l nodo sera el mismo
 	inicio = i; //los apuntadores inicio, fin y usuario apuntaran al primer nodo
 	fin = i;
 	usuario = i;
@@ -118,12 +125,16 @@ void lista::otro(int x){
 	nodo *i = new nodo(x); //crea un nuevo nodo
 	if(usuario == fin){ //verifica si el usuario se encuentra al final de la lista
 		i->siguiente = inicio; //siguiente nodo apuntara a nulo
+		i->anterior = fin; //el anterior del nuevo nodo es fin
 		fin->siguiente = i; //el siguiente de fin sera i
+		inicio->anterior = i; //el anterior de inicio es i
 		fin = i; //actualiza el apuntador fin al nuevo nodo
 		usuario = fin; //coloca al usuario en el nodo insertado
 	}else{//si no esta al final de la lista
 		i->siguiente = usuario->siguiente; //el siguiente del neuvo nodo es el siguiente donde esta el usuario
+		usuario->siguiente->anterior=i; //el anterior del siguiente del usuario es el nuevo nodo
 		usuario->siguiente = i; //el siguiente apuntador de usuario es el nuevo nodo
+		i->anterior = usuario; //el anterior del nodo es el usuario
 		usuario = i; //ubicamos al usuario en el nuevo nodo
 	}
 }
@@ -156,26 +167,44 @@ void lista::siguiente(){
 	}
 }
 
+void lista::anterior(){
+	system("cls");
+	if(usuario != NULL){ //si hay nodo
+		usuario = usuario->anterior; //actualizo el apuntador del usuario
+		cout<<"valor "<< usuario->valor<<"\n"; //imprime el valor
+		system("pause");
+	}else{ //no hay siguiente nodo
+		cout<<"No hay elementos";
+		system("pause");
+	}
+}
+
 void lista::borrar(){
 	nodo *temp;
 	system("cls");
 	cout<<"Elemento a borrar: "<<usuario->siguiente->valor<<"\n";
-	if(usuario->siguiente == inicio){ //borra el primero
+	if(usuario == inicio){ //borra el primero
 		temp=inicio->siguiente; //temp sera el siguiente de inicio
+		temp->anterior = fin; //el anterior de temp es fin
 		fin->siguiente = temp; //el siguiente de fin sera el siguiente de inicio
 		delete inicio; //borro inicio
 		inicio = temp; //inicio sera temp
+		usuario=inicio; //usuario se queda en el inicio
 	}
-	else if(usuario->siguiente == fin){ //borra el ultimo elemento
-		fin = usuario; //el nuevo fin sera la posicion del usuario
-		delete usuario->siguiente; //borra el siguiente de usuario
-		fin->siguiente = inicio; //el siguiente de fin sera inicio
+	else if(usuario == fin){ //borra el ultimo elemento
+		temp = usuario->anterior; //tempp vale al anterior del usuario
+		fin = temp; //el nuevo fin sera temp
+		fin->siguiente=inicio; //el siguiente de fin es inicio
+		inicio->anterior = fin; //
+		delete usuario; //borra el siguiente de usuario
 		usuario = fin; //usuario sera igual a fin
 	}
 	else{
-		temp = usuario->siguiente; //se guarda el nodo siguiente a usuario
-		usuario->siguiente = usuario->siguiente->siguiente; //el siguiente del usuario es el siguiente del siguiente del usuario
-		delete temp; //boorr temp
+		temp = usuario->anterior; //temp apunta al anterior del usuario
+		temp->siguiente = usuario->siguiente; //el siguiente de temo es el siguiente
+		usuario->siguiente->anterior = temp; //el anterior del siguiente del usuario es temp
+		delete usuario; //boorr temp
+		usuario = temp;
 	}
 	system("pause");
 }
