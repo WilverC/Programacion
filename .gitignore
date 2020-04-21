@@ -1,4 +1,5 @@
 *.exe
+*.o
 c++/*.exe
 Android/
 C/
