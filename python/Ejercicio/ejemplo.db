@@ -1,7 +1,0 @@
-create table product(
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    price REAL NOT NULL
-);
-insert into product(name,price) values('mouse', 300);
-insert into product(name,price) values('laptop', 3000);
