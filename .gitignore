@@ -1,9 +1,9 @@
 *.exe
 *.o
-c++/*.exe
 Android/
 Arduino/
 C/
+C++/
 fortran.f95/
 HolaGit/
 hacking/
