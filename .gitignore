@@ -2,13 +2,12 @@
 *.o
 c++/*.exe
 Android/
+Arduino/
 C/
-Git/
-Proyectos/	
-Proyectos/
 fortran.f95/
-go/
-php/
+HolaGit/
+hacking/
+PowerShell/
 python/30*
 python/Criptografia
 python/Ejercicio
@@ -17,4 +16,6 @@ python/Proyectos
 python/realizados
 python/udemy
 python/ordenar
-ruby/
+Script/
+Sistemas
+web/
