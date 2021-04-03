@@ -1,0 +1,5 @@
+Hola, esto es un programaa que
+lee lo que contiene el archivo en cuestion
+paraa ser procesado por un scanner de java
+y ver el contenido
+Lizeth TE AMO DEMASIADO!!!!
